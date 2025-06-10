@@ -169,15 +169,14 @@ function iteracionFinal() {
   let errorActual = realizarIteracion();
   let tolerancia = 1e-6;
   let maxIteraciones = 10000;
-  let iteraciones = 1;
 
-  while (Math.abs(errorAnterior - errorActual) > tolerancia && iteraciones < maxIteraciones) {
+  while (Math.abs(errorAnterior - errorActual) > tolerancia && config.iteracion < maxIteraciones) {
     errorAnterior = errorActual;
     errorActual = realizarIteracion();
-    iteraciones++;
+    config.iteracion++;
   }
 
-  console.log("Iteraciones totales:", iteraciones);
+  console.log("Iteraciones totales:", config.iteracion);
   console.log("Error final:", errorActual.toFixed(6));
 }
 
