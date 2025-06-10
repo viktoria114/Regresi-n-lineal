@@ -153,6 +153,9 @@ function realizarIteracion() {
 
   // 6. Actualizar el gráfico
   actualizarLineaRegresion(config.peso, config.bias);
+
+    return error; 
+
 }
 
 function realizar100iteraciones() {
@@ -160,6 +163,24 @@ function realizar100iteraciones() {
     realizarIteracion();
   }
 }
+
+function iteracionFinal() {
+  let errorAnterior = Infinity;
+  let errorActual = realizarIteracion();
+  let tolerancia = 1e-6;
+  let maxIteraciones = 10000;
+  let iteraciones = 1;
+
+  while (Math.abs(errorAnterior - errorActual) > tolerancia && iteraciones < maxIteraciones) {
+    errorAnterior = errorActual;
+    errorActual = realizarIteracion();
+    iteraciones++;
+  }
+
+  console.log("Iteraciones totales:", iteraciones);
+  console.log("Error final:", errorActual.toFixed(6));
+}
+
 
 // Inicializar el gráfico con los valores iniciales
 actualizarLineaRegresion(config.peso, config.bias);
