@@ -1,7 +1,7 @@
 const config = {
   peso: 2.05,
   bias: 0.58,
-  tasaDeAprendizaje: 0.05,
+  tasaDeAprendizaje: 0.01, //1.4697
   iteracion: 0,
   sentido: -1,
 };
@@ -167,17 +167,16 @@ function realizar100iteraciones() {
 function iteracionFinal() {
   let errorAnterior = Infinity;
   let errorActual = realizarIteracion();
-  let tolerancia = 1e-6;
-  let maxIteraciones = 10000;
+  const tolerancia = 1e-5; // tolerancia más sensible para convergencia
+  const maxIteraciones = 20000; // por si no converge, prevenir bucle infinito
 
-  while (Math.abs(errorAnterior - errorActual) > tolerancia && config.iteracion < maxIteraciones) {
+  while (
+    Math.abs(errorAnterior - errorActual) > tolerancia &&
+    config.iteracion < maxIteraciones
+  ) {
     errorAnterior = errorActual;
     errorActual = realizarIteracion();
-    config.iteracion++;
   }
-
-  console.log("Iteraciones totales:", config.iteracion);
-  console.log("Error final:", errorActual.toFixed(6));
 }
 
 
