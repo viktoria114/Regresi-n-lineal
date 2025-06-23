@@ -1,7 +1,7 @@
 const config = {
   peso: 2.05,
   bias: 0.58,
-  tasaDeAprendizaje: 0.01, //1.4697
+  tasaDeAprendizaje: 0.03, //1.4697
   iteracion: 0,
   sentido: -1,
 };
